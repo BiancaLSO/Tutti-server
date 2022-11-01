@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Instrument } from './instrument.schema';
 
 export type MusicianDocument = Musician & Document;
 

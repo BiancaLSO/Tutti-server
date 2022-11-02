@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Ensemble } from './ensemble.schema';
 import { Instrument } from './instrument.schema';
+import { PostCard } from './post-card.schema';
 
 export type MusicianDocument = Musician & Document;
 
@@ -18,13 +20,11 @@ export class Musician {
   @Prop()
   description: string;
 
-//   @Prop()
-//   ensembles: Ensemble[];
+  @Prop()
+  ensembles: Ensemble[];
 
-//   @Prop()
-//   posts: Post[];
-
+  @Prop()
+  posts: PostCard[];
 }
-
 
 export const MusicianSchema = SchemaFactory.createForClass(Musician);

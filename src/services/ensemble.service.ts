@@ -1,13 +1,13 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Instrument, InstrumentDocument } from 'src/schemas/instrument.schema';
+import { Ensemble, EnsembleDocument } from 'src/schemas/ensemble.schema';
 
 @Injectable()
-export class IntrumentService {
+export class EnsembleService {
   constructor(
-    @InjectModel(Instrument.name)
-    private instrumentModel: Model<InstrumentDocument>,
+    @InjectModel(Ensemble.name)
+    private ensembleModel: Model<EnsembleDocument>,
   ) {}
 
   //   async create(createCatDto: CreateCatDto): Promise<Cat> {
@@ -15,7 +15,7 @@ export class IntrumentService {
   //     return createdCat.save();
   //   }
 
-  async findAll(): Promise<Instrument[]> {
-    return this.instrumentModel.find().exec();
+  async findAll(): Promise<Ensemble[]> {
+    return this.ensembleModel.find().exec();
   }
 }

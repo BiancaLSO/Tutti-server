@@ -1,13 +1,13 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Instrument, InstrumentDocument } from 'src/schemas/instrument.schema';
+import { PostCard, PostCardDocument } from 'src/schemas/post-card.schema';
 
 @Injectable()
-export class IntrumentService {
+export class PostCardService {
   constructor(
-    @InjectModel(Instrument.name)
-    private instrumentModel: Model<InstrumentDocument>,
+    @InjectModel(PostCard.name)
+    private postCardModel: Model<PostCardDocument>,
   ) {}
 
   //   async create(createCatDto: CreateCatDto): Promise<Cat> {
@@ -15,7 +15,7 @@ export class IntrumentService {
   //     return createdCat.save();
   //   }
 
-  async findAll(): Promise<Instrument[]> {
-    return this.instrumentModel.find().exec();
+  async findAll(): Promise<PostCard[]> {
+    return this.postCardModel.find().exec();
   }
 }

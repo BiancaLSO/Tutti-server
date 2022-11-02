@@ -2,11 +2,13 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { EnsembleModule } from './modules/ensemble.module';
 import { GenreModule } from './modules/genre.module';
 import { InstrumentModule } from './modules/instrument.module';
 import { MusicianModule } from './modules/musician.module';
+import { PostCardModule } from './modules/post-card.module';
+import { PracticeFrequencyModule } from './modules/practice-frequency.module';
 import { UserModule } from './modules/user.module';
-import { PracticeFrequency } from './schemas/practice-frequency.schema';
 
 @Module({
   imports: [
@@ -17,7 +19,9 @@ import { PracticeFrequency } from './schemas/practice-frequency.schema';
     InstrumentModule,
     MusicianModule,
     GenreModule,
-    PracticeFrequency,
+    PracticeFrequencyModule,
+    EnsembleModule,
+    PostCardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

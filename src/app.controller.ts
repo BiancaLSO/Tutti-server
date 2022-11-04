@@ -10,3 +10,13 @@ export class AppController {
     return this.appService.getHello();
   }
 }
+
+// DeleteOne 
+@Delete(':id')
+deleteOne(@Param(':id')id: number): {
+  return this.appService.deleteOne(id);
+}
+
+function deleteOne() {
+  throw new Error('Function not implemented.');
+}

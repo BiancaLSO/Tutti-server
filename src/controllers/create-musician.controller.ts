@@ -1,18 +1,14 @@
-import { Controller, Post } from "@nestjs/common";
+import { Controller, Post, Body } from "@nestjs/common";
+import { CreateMusicianDto } from "src/dto/create-musician.dto";
+import { MusicianService } from 'src/services/musician.service';
 
 
 @Controller("create-musician")
 export class CreateMusicianController {
+  constructor(private readonly MusicianService: MusicianService) {}
 
   @Post()
-  sayHello() {
-    return `
-    "full-name": "Jane Doe",
-    "phone-no": "2122232425",
-    "instruments": "",
-    "description": "This is a post request",
-    "ensembles": "",
-    "posts": ""
-    `;
+  async create(@Body() CreateMusicianDto: CreateMusicianDto) {
+    await this.MusicianService.create(CreateMusicianDto);
   }
 }

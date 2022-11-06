@@ -10,4 +10,5 @@ export class MusicianController {
   getAllMusicians(): Promise<Musician[]> {
     return this.musicianService.findAll();
   }
+  
 }

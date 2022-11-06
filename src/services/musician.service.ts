@@ -2,6 +2,8 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Musician, MusicianDocument } from 'src/schemas/musician.schema';
+import { CreateMusicianDto } from 'src/dto/create-musician.dto';
+
 
 
 
@@ -10,10 +12,10 @@ import { Musician, MusicianDocument } from 'src/schemas/musician.schema';
 export class MusicianService {
   constructor(@InjectModel(Musician.name) private musicianModel: Model<MusicianDocument>) {}
 
-//   async create(createCatDto: CreateCatDto): Promise<Cat> {
-//     const createdCat = new this.catModel(createCatDto);
-//     return createdCat.save();
-//   }
+  async create(createMusicianDto: CreateMusicianDto): Promise<Musician> {
+    const createdMusician = new this.musicianModel(createMusicianDto);
+    return createdMusician.save();
+  }
 
   async findAll(): Promise<Musician[]> {
     return this.musicianModel.find().exec();

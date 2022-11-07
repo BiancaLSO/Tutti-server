@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { Musician } from 'src/schemas/musician.schema';
 import { MusicianService } from 'src/services/musician.service';
 
@@ -10,5 +10,9 @@ export class MusicianController {
   getAllMusicians(): Promise<Musician[]> {
     return this.musicianService.findAll();
   }
-  
+
+  @Put(':id')
+  async updateMusician(@Param('id') id: string, @Body() musician: Musician) {
+    return this.musicianService.updateMusician(id, musician);
+  }
 }

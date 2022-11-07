@@ -10,17 +10,17 @@ export class MusicianService {
     @InjectModel(Musician.name) private musicianModel: Model<MusicianDocument>,
   ) {}
 
-  async create(createMusicianDto: CreateMusicianDto): Promise<Musician> {
+  create(createMusicianDto: CreateMusicianDto): Promise<Musician> {
     const createdMusician = new this.musicianModel(createMusicianDto);
     return createdMusician.save();
   }
 
-  async findAll(): Promise<Musician[]> {
+  findAll(): Promise<Musician[]> {
     return this.musicianModel.find().exec();
   }
 
-  async updateMusician(id: string, musician: Musician) {
-    const newMusician = await this.musicianModel
+  updateMusician(id: string, musician: Musician) {
+    const newMusician = this.musicianModel
       .findByIdAndUpdate(id, musician)
       .setOptions({ overwrite: true, new: true })
       .populate('fullName')

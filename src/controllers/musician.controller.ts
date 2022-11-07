@@ -13,12 +13,12 @@ export class MusicianController {
   }
 
   @Post()
-  async create(@Body() CreateMusicianDto: CreateMusicianDto) {
-    await this.musicianService.create(CreateMusicianDto);
+  create(@Body() CreateMusicianDto: CreateMusicianDto) {
+    return this.musicianService.create(CreateMusicianDto);
   }
 
   @Put(':id')
-  async updateMusician(@Param('id') id: string, @Body() musician: Musician) {
+  updateMusician(@Param('id') id: string, @Body() musician: Musician) {
     return this.musicianService.updateMusician(id, musician);
   }
 }

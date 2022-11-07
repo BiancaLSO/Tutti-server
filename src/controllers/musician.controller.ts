@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { Musician } from 'src/schemas/musician.schema';
 import { MusicianService } from 'src/services/musician.service';
+import { CreateMusicianDto } from 'src/dto/create-musician.dto';
 
 @Controller('musicians')
 export class MusicianController {
@@ -9,6 +10,11 @@ export class MusicianController {
   @Get()
   getAllMusicians(): Promise<Musician[]> {
     return this.musicianService.findAll();
+  }
+
+  @Post()
+  async create(@Body() CreateMusicianDto: CreateMusicianDto) {
+    await this.musicianService.create(CreateMusicianDto);
   }
 
   @Put(':id')

@@ -2,6 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Musician, MusicianDocument } from 'src/schemas/musician.schema';
+import { CreateMusicianDto } from 'src/dto/create-musician.dto';
 
 @Injectable()
 export class MusicianService {

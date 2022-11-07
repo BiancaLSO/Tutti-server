@@ -3,7 +3,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MusicianController } from 'src/controllers/musician.controller';
 import { Musician, MusicianSchema } from 'src/schemas/musician.schema';
 import { MusicianService } from 'src/services/musician.service';
-import { CreateMusicianController } from 'src/controllers/create-musician.controller';
 
 @Module({
   imports: [
@@ -11,7 +10,7 @@ import { CreateMusicianController } from 'src/controllers/create-musician.contro
       { name: Musician.name, schema: MusicianSchema },
     ]),
   ],
-  controllers: [MusicianController, CreateMusicianController],
+  controllers: [MusicianController],
   providers: [MusicianService],
 })
 export class MusicianModule {}

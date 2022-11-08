@@ -23,4 +23,10 @@ export class AuthService {
     };
     
 }
+
+async getProfile(user: any){
+    return{
+        username: user.username, sub: user.userId
+    }
+}
 }

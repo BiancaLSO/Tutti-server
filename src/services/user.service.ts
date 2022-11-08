@@ -22,7 +22,6 @@ export class UserService {
   }
   create(createUserDto: CreateUserDto): Promise<User> {
    const password =  encodePassword(createUserDto.password);
-   console.log(password);
     const createdUser = new this.userModel({ ...createUserDto, password });
     return createdUser.save();
   }

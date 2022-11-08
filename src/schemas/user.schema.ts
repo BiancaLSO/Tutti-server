@@ -16,6 +16,9 @@ export class User {
 
   @Prop({ required: true })
   confimrPassword: string;
+
+  @Prop({ required: true })
+  isMusician: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

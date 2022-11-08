@@ -8,16 +8,16 @@ export class User {
   @Prop()
   username: string;
 
-  @Prop({ required: true })
+  @Prop()
   email: string;
 
-  @Prop({ required: true })
+  @Prop()
   password: string;
 
-  @Prop({ required: true })
+  @Prop()
   confimrPassword: string;
 
-  @Prop({ required: true })
+  @Prop()
   isMusician: boolean;
 }
 

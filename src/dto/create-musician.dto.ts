@@ -1,8 +1,8 @@
 export class CreateMusicianDto {
-     fullName: string;
-     phoneNo: number;
-     instruments: [];
-     description: string;
-     ensembles: [];
-     posts: [];
-  }
+  fullName: string;
+  phoneNo: number;
+  instruments: [];
+  description: string;
+  ensembles: [];
+  posts: [];
+}

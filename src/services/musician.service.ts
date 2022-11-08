@@ -3,6 +3,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Musician, MusicianDocument } from 'src/schemas/musician.schema';
 import { CreateMusicianDto } from 'src/dto/create-musician.dto';
+import { UpdateMusicianDto } from 'src/dto/update-musician.dto';
 
 @Injectable()
 export class MusicianService {
@@ -20,9 +21,9 @@ export class MusicianService {
     return this.musicianModel.find().exec();
   }
 
-  updateMusician(id: string, musician: Musician) {
+  updateMusician(id: string, updateMusicianDto: UpdateMusicianDto) {
     const newMusician = this.musicianModel
-      .findByIdAndUpdate(id, musician)
+      .findByIdAndUpdate(id, updateMusicianDto)
       .setOptions({ overwrite: true, new: true })
       .populate('fullName')
       .populate('phoneNo')
@@ -37,10 +38,7 @@ export class MusicianService {
     return newMusician;
   }
 
-
-  deleteMusician (id: string) {
-    return this.musicianModel.findOneAndDelete({ _id: id })
+  deleteMusician(id: string) {
+    return this.musicianModel.findOneAndDelete({ _id: id });
   }
-  
 }
-

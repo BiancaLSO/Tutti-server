@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Musician } from 'src/schemas/musician.schema';
 import { MusicianService } from 'src/services/musician.service';
 import { CreateMusicianDto } from 'src/dto/create-musician.dto';
@@ -21,4 +21,12 @@ export class MusicianController {
   updateMusician(@Param('id') id: string, @Body() musician: Musician) {
     return this.musicianService.updateMusician(id, musician);
   }
+
+  @Delete(':id')
+  deleteMusician(@Param('id') id: string) {
+    return this.musicianService.deleteMusician(id);
+  }
 }
+
+
+

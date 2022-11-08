@@ -6,6 +6,7 @@ import { CreateMusicianDto } from 'src/dto/create-musician.dto';
 
 @Injectable()
 export class MusicianService {
+  findOne: any;
   constructor(
     @InjectModel(Musician.name) private musicianModel: Model<MusicianDocument>,
   ) {}
@@ -35,4 +36,11 @@ export class MusicianService {
     }
     return newMusician;
   }
+
+
+  deleteMusician (id: string) {
+    return this.musicianModel.findOneAndDelete({ _id: id })
+  }
+  
 }
+

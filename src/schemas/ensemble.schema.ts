@@ -23,10 +23,10 @@ export class Ensemble {
   activeMusicians: number;
 
   @Prop()
-  practiceFrequency: PracticeFrequency;
+  practiceFrequency: string;
 
   @Prop()
-  genre: Genre;
+  genre: string;
 }
 
 export const EnsembleSchema = SchemaFactory.createForClass(Ensemble);

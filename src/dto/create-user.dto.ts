@@ -2,7 +2,7 @@ export class CreateUserDto {
     username: string;
     email: number;
     password: string;
-    confirmPassweod: string;
+    confirmPassword: string;
     isMusician: boolean;
 
   }

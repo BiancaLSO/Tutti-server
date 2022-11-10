@@ -15,7 +15,7 @@ export class User {
   password: string;
 
   @Prop()
-  confimrPassword: string;
+  confirmPassword: string;
 
   @Prop()
   isMusician: boolean;

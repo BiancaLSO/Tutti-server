@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Genre } from './genre.schema';
 import { Instrument } from './instrument.schema';
 
 export type PostCardDocument = PostCard & Document;
@@ -17,7 +16,7 @@ export class PostCard {
   instrument: Instrument;
 
   @Prop()
-  genre: Genre;
+  genre: string;
 
   @Prop()
   location: string;

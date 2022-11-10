@@ -4,11 +4,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { EnsembleModule } from './modules/ensemble.module';
-import { GenreModule } from './modules/genre.module';
 import { InstrumentModule } from './modules/instrument.module';
 import { MusicianModule } from './modules/musician.module';
 import { PostCardModule } from './modules/post-card.module';
-import { PracticeFrequencyModule } from './modules/practice-frequency.module';
 import { UserModule } from './modules/user.module';
 
 @Module({
@@ -19,11 +17,9 @@ import { UserModule } from './modules/user.module';
     UserModule,
     InstrumentModule,
     MusicianModule,
-    GenreModule,
-    PracticeFrequencyModule,
     EnsembleModule,
     PostCardModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,7 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Genre } from './genre.schema';
-import { PracticeFrequency } from './practice-frequency.schema';
 
 export type EnsembleDocument = Ensemble & Document;
 

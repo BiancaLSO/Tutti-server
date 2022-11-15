@@ -16,7 +16,8 @@ export class UserService {
   async findByUsername(username: string): Promise<User> {
     return this.userModel.findOne({ username: username }).exec();
   }
-  create(createUserDto: CreateUserDto): Promise<User> {
+
+  async create(createUserDto: CreateUserDto): Promise<User> {
     const password = encodePassword(createUserDto.password);
     const createdUser = new this.userModel({ ...createUserDto, password });
     return createdUser.save();

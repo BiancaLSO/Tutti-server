@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Instrument } from './instrument.schema';
+import { Instrument } from 'src/utils/instruments';
 
 export type PostCardDocument = PostCard & Document;
 
@@ -13,16 +13,13 @@ export class PostCard {
   description: string;
 
   @Prop()
-  instrument: string;
+  instrument: Instrument;
 
   @Prop()
   genre: string;
 
   @Prop()
   location: string;
-
-  //   @Prop()
-  //   LookupType: boolean;
 }
 
 export const PostCardSchema = SchemaFactory.createForClass(PostCard);

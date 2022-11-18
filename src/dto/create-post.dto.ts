@@ -1,9 +1,9 @@
-import { Instrument } from 'src/schemas/instrument.schema';
+import { Instrument } from 'src/utils/instruments';
 
 export class CreatePostDto {
   title: string;
   description: string;
-  instrument: string;
+  instrument: Instrument;
   genre: string;
   location: string;
 }

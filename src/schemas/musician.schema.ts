@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Instrument } from 'src/utils/instruments';
 import { Ensemble } from './ensemble.schema';
-import { Instrument } from './instrument.schema';
 import { PostCard } from './post-card.schema';
 
 export type MusicianDocument = Musician & Document;
@@ -15,7 +15,7 @@ export class Musician {
   phoneNo: number;
 
   @Prop()
-  instruments: Instrument[];
+  instrument: Instrument;
 
   @Prop()
   description: string;

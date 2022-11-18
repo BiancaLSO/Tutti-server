@@ -1,8 +1,16 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class CreateMusicianDto {
+  @IsNotEmpty()
   fullName: string;
+
   phoneNo: number;
-  instruments: [];
+
+  instrument: string;
+
   description: string;
+
   ensembles: [];
+
   posts: [];
 }

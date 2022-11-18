@@ -1,9 +1,14 @@
 import { Model } from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Musician, MusicianDocument } from 'src/schemas/musician.schema';
+import {
+  Musician,
+  MusicianDocument,
+  MusicianSchema,
+} from 'src/schemas/musician.schema';
 import { CreateMusicianDto } from 'src/dto/create-musician.dto';
 import { UpdateMusicianDto } from 'src/dto/update-musician.dto';
+import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';
 
 @Injectable()
 export class MusicianService {
@@ -40,5 +45,14 @@ export class MusicianService {
 
   deleteMusician(id: string) {
     return this.musicianModel.findOneAndDelete({ _id: id });
+  }
+
+  // Adding an ensemble into the ensembles array (property of the musician class)
+  // To be researched
+
+  addEnsemble(id: string, ensemble: CreateEnsembleDto) {
+    const ensemblesArr = this.musicianModel.findById(id).distinct('ensembles');
+    console.log(ensemblesArr);
+    // ensemblesArr.push(ensemble);
   }
 }

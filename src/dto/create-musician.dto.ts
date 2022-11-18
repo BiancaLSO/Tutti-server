@@ -1,4 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
+import { Ensemble } from 'src/schemas/ensemble.schema';
+import { PostCard } from 'src/schemas/post-card.schema';
 
 export class CreateMusicianDto {
   @IsNotEmpty()
@@ -10,7 +12,7 @@ export class CreateMusicianDto {
 
   description: string;
 
-  ensembles: [];
+  ensembles: Ensemble[];
 
-  posts: [];
+  posts: PostCard[];
 }

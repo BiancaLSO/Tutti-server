@@ -13,7 +13,7 @@ export class PostCard {
   description: string;
 
   @Prop()
-  instrument: Instrument;
+  instrument: string;
 
   @Prop()
   genre: string;

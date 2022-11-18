@@ -2,6 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PostCard, PostCardDocument } from 'src/schemas/post-card.schema';
+import { CreatePostDto } from 'src/dto/create-post.dto';
 
 @Injectable()
 export class PostCardService {
@@ -10,12 +11,16 @@ export class PostCardService {
     private postCardModel: Model<PostCardDocument>,
   ) {}
 
-  //   async create(createCatDto: CreateCatDto): Promise<Cat> {
-  //     const createdCat = new this.catModel(createCatDto);
-  //     return createdCat.save();
-  //   }
-
-  async findAll(): Promise<PostCard[]> {
+  findAll(): Promise<PostCard[]> {
     return this.postCardModel.find().exec();
+  }
+
+  async createPost(createPostDto: CreatePostDto): Promise<PostCard> {
+    const createdPost = new this.postCardModel(createPostDto);
+    return createdPost.save();
+  }
+
+  deletePost(id: string) {
+    return this.postCardModel.findOneAndDelete({ _id: id });
   }
 }

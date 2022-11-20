@@ -7,10 +7,10 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { Musician } from 'src/schemas/musician.schema';
-import { MusicianService } from 'src/services/musician.service';
-import { CreateMusicianDto } from 'src/dto/create-musician.dto';
-import { UpdateMusicianDto } from 'src/dto/update-musician.dto';
+import { Musician } from '.././schemas/musician.schema';
+import { MusicianService } from '.././services/musician.service';
+import { CreateMusicianDto } from '.././dto/create-musician.dto';
+import { UpdateMusicianDto } from '.././dto/update-musician.dto';
 
 @Controller('musicians')
 export class MusicianController {

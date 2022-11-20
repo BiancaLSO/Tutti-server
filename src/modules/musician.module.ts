@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { MusicianController } from 'src/controllers/musician.controller';
+import { MusicianController } from '.././controllers/musician.controller';
 import { Musician, MusicianSchema } from 'src/schemas/musician.schema';
-import { MusicianService } from 'src/services/musician.service';
+import { MusicianService } from '.././services/musician.service';
 
 @Module({
   imports: [

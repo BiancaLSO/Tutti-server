@@ -11,6 +11,7 @@ import { Musician } from '.././schemas/musician.schema';
 import { MusicianService } from '.././services/musician.service';
 import { CreateMusicianDto } from '.././dto/create-musician.dto';
 import { UpdateMusicianDto } from '.././dto/update-musician.dto';
+import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';
 
 @Controller('musicians')
 export class MusicianController {
@@ -47,5 +48,10 @@ export class MusicianController {
   // @Post('/:id/ensembles')
   // findAllTest(@Param('id') id: string, @Body() ensemble: CreateEnsembleDto) {
   //   return this.musicianService.findAllTest(id, ensemble);
+  // }
+
+  // @Get('/:id/ensembles')
+  // addEnsemble(@Param('id') id: string, @Body() ensemble: CreateEnsembleDto) {
+  //   return this.musicianService.addEnsemble(id, ensemble);
   // }
 }

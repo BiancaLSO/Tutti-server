@@ -9,6 +9,7 @@ import {
 import { CreateMusicianDto } from 'src/dto/create-musician.dto';
 import { UpdateMusicianDto } from 'src/dto/update-musician.dto';
 import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';
+import { Ensemble } from 'src/schemas/ensemble.schema';
 
 @Injectable()
 export class MusicianService {
@@ -22,8 +23,8 @@ export class MusicianService {
     return createdMusician.save();
   }
 
-  findAll(): Promise<Musician[]> {
-    return this.musicianModel.find().exec();
+  async findAll(): Promise<Musician[]> {
+    return this.musicianModel.find().populate('ensembles');
   }
 
   updateMusician(id: string, updateMusicianDto: UpdateMusicianDto) {
@@ -50,9 +51,20 @@ export class MusicianService {
   // Adding an ensemble into the ensembles array (property of the musician class)
   // To be researched
 
-  addEnsemble(id: string, ensemble: CreateEnsembleDto) {
-    const ensemblesArr = this.musicianModel.findById(id).distinct('ensembles');
-    console.log(ensemblesArr);
-    // ensemblesArr.push(ensemble);
+  // async findAllEnsembles() {
+  //   return this.musicianModel.find({}).select('ensembles');
+  // }
+
+  // async addEnsemble(id: string, ensemble: Ensemble) {
+  //   return this.musicianModel
+  //     .findByIdAndUpdate(id, { ensembles: ensemble._id })
+  //     .populate('ensembles');
+  // }
+
+  async findAllTest(
+    id: string,
+    ensemble: CreateEnsembleDto,
+  ): Promise<Musician[]> {
+    return this.musicianModel.find({ _id: id });
   }
 }

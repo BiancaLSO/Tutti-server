@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import { Instrument } from 'src/utils/instruments';
 import { Ensemble } from './ensemble.schema';
 import { PostCard } from './post-card.schema';
@@ -20,7 +20,9 @@ export class Musician {
   @Prop()
   description: string;
 
-  @Prop()
+  @Prop({
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: Ensemble.name }],
+  })
   ensembles: Ensemble[];
 
   @Prop()

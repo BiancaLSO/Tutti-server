@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
-import { Instrument } from 'src/utils/instruments';
+import { Instrument } from '.././utils/instruments';
 import { Ensemble } from './ensemble.schema';
 import { PostCard } from './post-card.schema';
 

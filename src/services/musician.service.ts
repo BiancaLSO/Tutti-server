@@ -5,7 +5,7 @@ import {
   Musician,
   MusicianDocument,
   MusicianSchema,
-} from 'src/schemas/musician.schema';
+} from '.././schemas/musician.schema';
 import { CreateMusicianDto } from 'src/dto/create-musician.dto';
 import { UpdateMusicianDto } from 'src/dto/update-musician.dto';
 import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';

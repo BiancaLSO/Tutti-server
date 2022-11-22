@@ -1,0 +1,23 @@
+name: Deploy to production
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependecies
+        run: npm i
+      - run: npm run build
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ''
+          heroku_email: 'biancastan90@gmail.com'
+          procfile: 'web: npm run start:prod'

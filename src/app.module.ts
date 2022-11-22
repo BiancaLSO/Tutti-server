@@ -11,7 +11,9 @@ import { UserModule } from './modules/user.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://tutti-user:tutti1234@tutti.5qivxnv.mongodb.net/tutti',
+      // 'mongodb+srv://tutti-user:tutti1234@tutti.5qivxnv.mongodb.net/tutti',
+      process.env.DATABASE_URL ||
+        'mongodb+srv://tutti-user:tutti1234@tutti.5qivxnv.mongodb.net/tutti',
     ),
     UserModule,
     MusicianModule,

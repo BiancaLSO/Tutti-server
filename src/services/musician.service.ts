@@ -61,10 +61,10 @@ export class MusicianService {
   //     .populate('ensembles');
   // }
 
-  async findAllTest(
-    id: string,
-    ensemble: CreateEnsembleDto,
-  ): Promise<Musician[]> {
-    return this.musicianModel.find({ _id: id });
-  }
+  // async findAllTest(
+  //   id: string,
+  //   ensemble: CreateEnsembleDto,
+  // ): Promise<Musician[]> {
+  //   return this.musicianModel.find({ _id: id });
+  // }
 }

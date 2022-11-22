@@ -44,8 +44,8 @@ export class MusicianController {
   //   return this.musicianService.findAllEnsembles();
   // }
 
-  @Post('/:id/ensembles')
-  findAllTest(@Param('id') id: string, @Body() ensemble: CreateEnsembleDto) {
-    return this.musicianService.findAllTest(id, ensemble);
-  }
+  // @Post('/:id/ensembles')
+  // findAllTest(@Param('id') id: string, @Body() ensemble: CreateEnsembleDto) {
+  //   return this.musicianService.findAllTest(id, ensemble);
+  // }
 }

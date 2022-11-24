@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Musician, MusicianDocument } from '.././schemas/musician.schema';
@@ -50,4 +50,27 @@ export class MusicianService {
 
   //   console.log(ensmebleArray);
   // }
+
+  async addEnsemble(id: string, en: CreateEnsembleDto) {
+
+    const updateMusician = await this.musicianModel.findById(id);
+    updateMusician.ensembles.push(en);
+  
+    return updateMusician.save();
+  }
+
+  async deleteEnsemble(id: string, enId: string) {
+    const updateBusiness = await this.musicianModel.findById(id);
+
+    const filteredBcs = updateBusiness.ensembles.filter(
+      (ensemble: any) => {
+        return ensemble.toString() !== enId;
+      },
+    );
+    updateBusiness.ensembles = filteredBcs;
+
+    return updateBusiness.save();
+  }
 }
+
+

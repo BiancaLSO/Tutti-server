@@ -20,9 +20,7 @@ export class Musician {
   @Prop()
   description: string;
 
-  @Prop({
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: Ensemble.name }],
-  })
+  @Prop()
   ensembles: Ensemble[];
 
   @Prop()

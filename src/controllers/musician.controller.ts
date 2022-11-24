@@ -46,44 +46,25 @@ export class MusicianController {
     return this.musicianService.deleteMusician(id);
   }
 
-  // @Get('/ensembles')
-  // findAllEnsembles(): Promise<Musician[]> {
-  //   return this.musicianService.findAllEnsembles();
-  // }
+  @Post(':id/ensembles')
+  addEnsemble(
+    @Param('id') id: string,
+    @Body() ensemble: CreateEnsembleDto,
+  ): Promise<Musician> {
+    console.log('ensemble', ensemble);
+    console.log('ensemble id', id);
 
-  // @Post('/:id/ensembles')
-  // findAllTest(@Param('id') id: string, @Body() ensemble: CreateEnsembleDto) {
-  //   return this.musicianService.findAllTest(id, ensemble);
-  // }
+    return this.musicianService.addEnsemble(id, ensemble);
+  }
 
-  // @Get('/:id/ensembles')
-  // addEnsemble(@Param('id') id: string, @Body() ensemble: CreateEnsembleDto) {
-  //   return this.musicianService.addEnsemble(id, ensemble);
-  // }
+  @Delete(':id/ensembles/:enId')
+  deleteEnsemble(
+    @Param('id') id: string,
+    @Param('enId') enId: string,
+  ): Promise<Musician> {
+    console.log('businessCardId', enId);
+    console.log('business id', id);
 
-  
-   @Post(':id/ensembles')
-   addEnsemble(
-     @Param('id') id: string,
-     @Body() ensemble: CreateEnsembleDto,
-   ): Promise<Musician> { 
-    console.log("ensemble", ensemble);
-    console.log("ensemble id", id);
-    
-     return this.musicianService.addEnsemble(id, ensemble);
-   }
-
-
-   @Delete(':id/ensembles/:enId')
-   deleteEnsemble(
-     @Param('id') id: string,
-     @Param('enId') enId: string,
-   ): Promise<Musician> {
-     console.log('businessCardId', enId);
-     console.log('business id', id);
- 
-     return this.musicianService.deleteEnsemble(id, enId);
-   }
+    return this.musicianService.deleteEnsemble(id, enId);
+  }
 }
-
-

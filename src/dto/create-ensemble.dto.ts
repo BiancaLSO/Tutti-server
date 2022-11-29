@@ -16,4 +16,6 @@ export class CreateEnsembleDto {
   practiceFrequency: string;
 
   genre: string;
+
+  lookUpInfo: string
 }

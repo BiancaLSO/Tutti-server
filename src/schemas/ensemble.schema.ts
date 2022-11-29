@@ -25,6 +25,9 @@ export class Ensemble {
 
   @Prop()
   genre: string;
+  
+  @Prop()
+  lookUpInfo: string;
 }
 
 export const EnsembleSchema = SchemaFactory.createForClass(Ensemble);

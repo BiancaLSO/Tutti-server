@@ -31,7 +31,8 @@ export class EnsembleService {
       .populate('address')
       .populate('activeMusicians')
       .populate('practiceFrequency')
-      .populate('genre');
+      .populate('genre')
+      .populate('lookUpInfo');
 
     if (!newEnsemble) {
       throw new NotFoundException();

@@ -1,27 +1,60 @@
 import {
-    Body,
-    Controller,
-    Get,
-    Post,
-  } from '@nestjs/common';
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 
 import { UserService } from 'src/services/user.service';
 import { CreateUserDto } from 'src/dto/create-user.dto';
 import { User } from 'src/schemas/user.schema';
-  
-  @Controller('signup')
-  export class UserController {
-    constructor(private readonly userService: UserService) {}
-  
-    @Get()
-    getAllUsers(): Promise<User[]> {
-      return this.userService.findAll();
-    }
-  
-    @Post()
-    create(@Body() CreateUserDto: CreateUserDto) {
-      return this.userService.create(CreateUserDto);
-    }
-  
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { UpdateUserDto } from 'src/dto/update-user.dto';
+import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';
+
+@Controller('profile')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+
+  @Get()
+  getAllUsers(): Promise<User[]> {
+    return this.userService.findAll();
   }
-  
+
+  @Post('/signup')
+  createUser(@Body() CreateUserDto: CreateUserDto) {
+    return this.userService.createUser(CreateUserDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put(':id')
+  updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.userService.updateUser(id, updateUserDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id')
+  deleteUser(@Param('id') id: string) {
+    return this.userService.deleteUser(id);
+  }
+
+  @Post(':id/ensembles')
+  addEnsemble(
+    @Param('id') id: string,
+    @Body() ensemble: CreateEnsembleDto,
+  ): Promise<User> {
+    return this.userService.addEnsemble(id, ensemble);
+  }
+
+  @Delete(':id/ensembles/:enId')
+  deleteEnsemble(
+    @Param('id') id: string,
+    @Param('enId') enId: string,
+  ): Promise<User> {
+    return this.userService.deleteEnsemble(id, enId);
+  }
+}

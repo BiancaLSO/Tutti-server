@@ -9,19 +9,19 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { UserService } from 'src/services/user.service';
-import { CreateUserDto } from 'src/dto/create-user.dto';
-import { User } from 'src/schemas/user.schema';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { UpdateUserDto } from 'src/dto/update-user.dto';
-import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';
+import { UserService } from './../services/user.service';
+import { CreateUserDto } from './../dto/create-user.dto';
+import { User } from './../schemas/user.schema';
+import { JwtAuthGuard } from './../auth/jwt-auth.guard';
+import { UpdateUserDto } from './../dto/update-user.dto';
+import { CreateEnsembleDto } from './../dto/create-ensemble.dto';
 
 @Controller('profile')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  getAllUsers(): Promise<User[]> {
+  findAll(): Promise<User[]> {
     return this.userService.findAll();
   }
 

@@ -8,10 +8,10 @@ import {
     Post,
     Put,
   } from '@nestjs/common';
-  import { Ensemble } from 'src/schemas/ensemble.schema';
-  import { EnsembleService } from 'src/services/ensemble.service';
-  import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';
-import { UpdateEnsembleDto } from 'src/dto/update-ensemble.dto';
+  import { Ensemble } from './../schemas/ensemble.schema';
+  import { EnsembleService } from './../services/ensemble.service';
+  import { CreateEnsembleDto } from './../dto/create-ensemble.dto';
+import { UpdateEnsembleDto } from './../dto/update-ensemble.dto';
 
 
   

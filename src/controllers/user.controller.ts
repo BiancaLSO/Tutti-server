@@ -20,11 +20,15 @@ import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Get('/loggedin/:id')
+  findById(@Param('id') id: string): Promise<User> {
+    return this.userService.findById(id);
+  }
+
   @Get()
   getAllUsers(): Promise<User[]> {
     return this.userService.findAll();
   }
-
   @Post('/signup')
   createUser(@Body() CreateUserDto: CreateUserDto) {
     return this.userService.createUser(CreateUserDto);
@@ -57,4 +61,6 @@ export class UserController {
   ): Promise<User> {
     return this.userService.deleteEnsemble(id, enId);
   }
+
+
 }

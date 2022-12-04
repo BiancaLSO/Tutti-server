@@ -14,8 +14,9 @@ export class AppController {
   }
 
   // @UseGuards(JwtAuthGuard)
-  // @Get('profile')
+  // @Get('auth/profile')
   // async getProfile(@Request() req) {
-  //   return req.user;
+  //   console.log('This is from the ctrl' + req.user);
+  //   return this.authService.getProfile(req.user);
   // }
 }

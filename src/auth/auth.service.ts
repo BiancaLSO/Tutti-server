@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { comparePasswords } from '.././utils/bcrypt';
+import { use } from 'passport';
 
 @Injectable()
 export class AuthService {
@@ -25,16 +26,19 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { username: user.username, _id: user._id };
     return {
+      id: payload._id,
       access_token: this.jwtService.sign(payload),
     };
   }
 
-  async getProfile(user: any) {
-    return {
-      username: user.username,
-      sub: user.userId,
-    };
-  }
+  // async getProfile(user: any) {
+  //   // const userFromDb = await this.userService.findByUsername(user.username);
+  //   const payload = { username: user.username, _id: user._id };
+  //   return {
+  //     username: payload.username,
+  //     _id: payload._id,
+  //   };
+  // }
 }

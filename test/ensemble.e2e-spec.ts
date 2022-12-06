@@ -156,7 +156,7 @@ describe('Ensemble Controller (e2e)', () => {
   });
 
   // Closing the app after all tests, which results in not hanging.
-  //   afterAll(() => {
-  //     app.close();
-  //   });
+  afterAll(() => {
+    app.close();
+  });
 });

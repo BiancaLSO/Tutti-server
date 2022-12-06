@@ -1,9 +1,9 @@
 import { Model } from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Ensemble, EnsembleDocument } from 'src/schemas/ensemble.schema';
-import { UpdateEnsembleDto } from 'src/dto/update-ensemble.dto';
-import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';
+import { Ensemble, EnsembleDocument } from './../schemas/ensemble.schema';
+import { UpdateEnsembleDto } from './../dto/update-ensemble.dto';
+import { CreateEnsembleDto } from './../dto/create-ensemble.dto';
 
 @Injectable()
 export class EnsembleService {
@@ -12,11 +12,11 @@ export class EnsembleService {
     @InjectModel(Ensemble.name) private ensembleModel: Model<EnsembleDocument>,
   ) {}
 
-  create(createEnsembleDto: CreateEnsembleDto): Promise<Ensemble> {
+  createEnsemble(createEnsembleDto: CreateEnsembleDto): Promise<Ensemble> {
     const createdEnsemble = new this.ensembleModel(createEnsembleDto);
     return createdEnsemble.save();
   }
-  
+
   findAll(): Promise<Ensemble[]> {
     return this.ensembleModel.find().exec();
   }
@@ -43,10 +43,8 @@ export class EnsembleService {
   deleteEnsemble(id: string) {
     return this.ensembleModel.findOneAndDelete({ _id: id });
   }
+
+  deleteAll(deleteCriteria: any) {
+    return this.ensembleModel.deleteMany(deleteCriteria);
+  }
 }
-
-
-
-
-
- 

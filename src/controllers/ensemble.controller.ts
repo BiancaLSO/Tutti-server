@@ -1,20 +1,17 @@
-
 import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Post,
-    Put,
-  } from '@nestjs/common';
-  import { Ensemble } from 'src/schemas/ensemble.schema';
-  import { EnsembleService } from 'src/services/ensemble.service';
-  import { CreateEnsembleDto } from 'src/dto/create-ensemble.dto';
-import { UpdateEnsembleDto } from 'src/dto/update-ensemble.dto';
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { Ensemble } from './../schemas/ensemble.schema';
+import { EnsembleService } from './../services/ensemble.service';
+import { CreateEnsembleDto } from './../dto/create-ensemble.dto';
+import { UpdateEnsembleDto } from './../dto/update-ensemble.dto';
 
-
-  
 @Controller('ensembles')
 export class EnsembleController {
   constructor(private readonly ensembleService: EnsembleService) {}
@@ -25,8 +22,8 @@ export class EnsembleController {
   }
 
   @Post()
-  create(@Body() CreateEnsembleDto: CreateEnsembleDto) {
-    return this.ensembleService.create(CreateEnsembleDto);
+  createEnsembles(@Body() CreateEnsembleDto: CreateEnsembleDto) {
+    return this.ensembleService.createEnsemble(CreateEnsembleDto);
   }
 
   @Put(':id')

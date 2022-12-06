@@ -28,52 +28,20 @@ describe('Ensemble Controller (e2e)', () => {
   });
 
   // Testing the Get all Ensembles method
-  //   describe('Get all Ensemble Controller', () => {
-  //     it('should get all ensembles', async () => {
-  //       // Arrange
-  //       const en1 = new CreateEnsembleDto(
-  //         'Addams Family Orchestra',
-  //         'This is a description',
-  //         'www.addams.org',
-  //         'New York',
-  //         22,
-  //         'every two days',
-  //         'Baroq',
-  //         'Cello musicians',
-  //       );
-  //       const en2 = new CreateEnsembleDto(
-  //         'Wednesday Orchestra',
-  //         'This is a description',
-  //         'www.wedn.org',
-  //         'New York',
-  //         22,
-  //         'every two days',
-  //         'Baroq',
-  //         'Cello musicians',
-  //       );
-  //       const en3 = new CreateEnsembleDto(
-  //         'Morticia Orchestra',
-  //         'This is a description',
-  //         'www.morticia.org',
-  //         'New York',
-  //         22,
-  //         'every two days',
-  //         'Baroq',
-  //         'Cello musicians',
-  //       );
-  //       await enService.createEnsemble(en1);
-  //       await enService.createEnsemble(en2);
-  //       await enService.createEnsemble(en3);
+  // describe('Get all Ensemble Controller', () => {
+  //   it('should get all ensembles', async () => {
+  //     //Act
+  //     const result = await request(app.getHttpServer())
+  //       .get('/ensembles')
+  //       .expect(200)
+  //       .expect({
+  //         data: enService.findAll(),
+  //       });
 
-  //       //Act
-  //       const result = await request(app.getHttpServer())
-  //         .get('/ensembles')
-  //         .expect(201);
-
-  //       //Assert
-  //       const res = result.body;
-  //     });
+  //     //Assert
+  //     expect(result.body);
   //   });
+  // });
 
   // Testing the Post an Ensemble method
   describe('POST Ensemble Controller', () => {
@@ -122,10 +90,7 @@ describe('Ensemble Controller (e2e)', () => {
         .expect(400);
 
       // Assert
-      console.log(result);
-      expect(result.body.message[0]).toEqual(
-        'The name field should not be empty',
-      );
+      expect(result.body.message[0]).toEqual('name should not be empty');
     });
 
     it('should create a new valid ensemble', async () => {
@@ -148,10 +113,7 @@ describe('Ensemble Controller (e2e)', () => {
         .expect(400);
 
       // Assert
-      console.log(result);
-      expect(result.body.message[0]).toEqual(
-        'The description field should not be empty',
-      );
+      expect(result.body.message[0]).toEqual('description should not be empty');
     });
   });
 

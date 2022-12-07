@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { Ensemble } from './../schemas/ensemble.schema';
 import { EnsembleService } from './../services/ensemble.service';
@@ -18,7 +19,12 @@ export class EnsembleController {
 
   @Get()
   getAllEnsemble(): Promise<Ensemble[]> {
-    return this.ensembleService.findAll();
+    return this.ensembleService.getAllEnsembles();
+  }
+
+  @Get('filter')
+  getFilteredEnsembles(@Query('search') keyword: string) {
+    return this.ensembleService.getFilteredEnsembles(keyword);
   }
 
   @Post()

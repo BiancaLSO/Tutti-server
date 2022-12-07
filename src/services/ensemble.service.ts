@@ -12,13 +12,24 @@ export class EnsembleService {
     @InjectModel(Ensemble.name) private ensembleModel: Model<EnsembleDocument>,
   ) {}
 
+  getAllEnsembles(): Promise<Ensemble[]> {
+    return this.ensembleModel.find().exec();
+  }
+
+  getFilteredEnsembles(keyword: string) {
+    const query = this.ensembleModel.find().where({
+      $or: [
+        { name: { $regex: keyword, $options: 'i' } },
+        { description: { $regex: keyword, $options: 'i' } },
+        { genre: { $regex: keyword, $options: 'i' } },
+      ],
+    });
+    return query;
+  }
+
   createEnsemble(createEnsembleDto: CreateEnsembleDto): Promise<Ensemble> {
     const createdEnsemble = new this.ensembleModel(createEnsembleDto);
     return createdEnsemble.save();
-  }
-
-  findAll(): Promise<Ensemble[]> {
-    return this.ensembleModel.find().exec();
   }
 
   updateEnsemble(id: string, updateEnsembleDto: UpdateEnsembleDto) {

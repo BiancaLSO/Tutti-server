@@ -16,6 +16,10 @@ export class EnsembleService {
     return this.ensembleModel.find().exec();
   }
 
+  getEnsembleById(id: string): Promise<Ensemble> {
+    return this.ensembleModel.findById(id).exec();
+  }
+
   getFilteredEnsembles(keyword: string) {
     const query = this.ensembleModel.find().where({
       $or: [

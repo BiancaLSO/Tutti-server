@@ -29,6 +29,7 @@ export class UserController {
   getAllUsers(): Promise<User[]> {
     return this.userService.findAll();
   }
+
   @Post('/signup')
   createUser(@Body() CreateUserDto: CreateUserDto) {
     return this.userService.createUser(CreateUserDto);
@@ -46,6 +47,7 @@ export class UserController {
     return this.userService.deleteUser(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post(':id/ensembles')
   addEnsemble(
     @Param('id') id: string,
@@ -54,6 +56,7 @@ export class UserController {
     return this.userService.addEnsemble(id, ensemble);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id/ensembles/:enId')
   deleteEnsemble(
     @Param('id') id: string,
@@ -61,6 +64,4 @@ export class UserController {
   ): Promise<User> {
     return this.userService.deleteEnsemble(id, enId);
   }
-
-
 }

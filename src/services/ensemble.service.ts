@@ -24,7 +24,6 @@ export class EnsembleService {
     const query = this.ensembleModel.find().where({
       $or: [
         { name: { $regex: keyword, $options: 'i' } },
-        { description: { $regex: keyword, $options: 'i' } },
         { genre: { $regex: keyword, $options: 'i' } },
       ],
     });

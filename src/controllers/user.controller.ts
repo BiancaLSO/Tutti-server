@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Post,
   Put,
@@ -27,24 +29,45 @@ export class UserController {
 
   @Get()
   getAllUsers(): Promise<User[]> {
+    try{
     return this.userService.findAll();
+    } catch (error){
+      console.error(error);
+      // Handle the error
+      throw new HttpException('Internal Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @Post('/signup')
   createUser(@Body() CreateUserDto: CreateUserDto) {
+    try {
     return this.userService.createUser(CreateUserDto);
+    } catch (error) {
+      console.error(error);
+      throw new HttpException('Validation Error', HttpStatus.BAD_REQUEST);
+    }
   }
 
   @UseGuards(JwtAuthGuard)
   @Put(':id')
   updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    try{
     return this.userService.updateUser(id, updateUserDto);
+    } catch (error) {
+      console.error(error);
+      throw new HttpException('Validation Error', HttpStatus.BAD_REQUEST);
+    }
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   deleteUser(@Param('id') id: string) {
+    try{
     return this.userService.deleteUser(id);
+    }catch (error){
+      console.error(error);
+      throw new HttpException('Validation Error', HttpStatus.BAD_REQUEST);
+    }
   }
 
   @UseGuards(JwtAuthGuard)
@@ -52,8 +75,12 @@ export class UserController {
   addEnsemble(
     @Param('id') id: string,
     @Body() ensemble: CreateEnsembleDto,
-  ): Promise<User> {
+  ): Promise<User> { try{
     return this.userService.addEnsemble(id, ensemble);
+  } catch (error) {
+    console.error(error);
+    throw new HttpException('Validation Error', HttpStatus.BAD_REQUEST);
+  }
   }
 
   @UseGuards(JwtAuthGuard)
@@ -61,7 +88,11 @@ export class UserController {
   deleteEnsemble(
     @Param('id') id: string,
     @Param('enId') enId: string,
-  ): Promise<User> {
+  ): Promise<User> { try{
     return this.userService.deleteEnsemble(id, enId);
+  } catch (error){
+    console.error(error);
+    throw new HttpException('Validation Error', HttpStatus.BAD_REQUEST);
+  } 
   }
 }

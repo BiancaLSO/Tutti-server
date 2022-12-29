@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsInt, IsNotEmpty } from 'class-validator';
 import { Ensemble } from 'src/schemas/ensemble.schema';
 
 export class CreateUserDto {
@@ -14,7 +14,7 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   fullName: string;
-
+  
   phoneNo: number;
 
   instrument: string;

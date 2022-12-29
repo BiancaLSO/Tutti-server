@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsInt, IsNotEmpty } from 'class-validator';
 
 export class CreateEnsembleDto {
   @IsNotEmpty()
@@ -11,6 +11,7 @@ export class CreateEnsembleDto {
 
   address: string;
 
+ @IsInt()
   activeMusicians: number;
 
   practiceFrequency: string;

@@ -9,6 +9,9 @@ import { encodePassword } from '.././utils/bcrypt';
 
 @Injectable()
 export class UserService {
+  deleteAll(arg0: {}) {
+      throw new Error('Method not implemented.');
+  }
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async findAll(): Promise<User[]> {

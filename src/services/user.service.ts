@@ -16,11 +16,9 @@ export class UserService {
     return this.userModel.find().populate('ensembles');
   }
 
-
   async findById(id: string): Promise<User> {
     return this.userModel.findOne({ _id: id }).exec();
   }
-
 
   async findByUsername(username: string): Promise<User> {
     return this.userModel.findOne({ username: username }).exec();
@@ -75,5 +73,9 @@ export class UserService {
     updateUser.ensembles = filteredEnsembles;
 
     return updateUser.save();
+  }
+
+  deleteAll(deleteCriteria: any) {
+    return this.userModel.deleteMany(deleteCriteria);
   }
 }

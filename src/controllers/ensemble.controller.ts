@@ -54,9 +54,8 @@ export class EnsembleController {
     return this.ensembleService.getFilteredEnsembles(keyword);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post()
-   createEnsemble(@Body() CreateEnsembleDto: CreateEnsembleDto) {
+  createEnsemble(@Body() CreateEnsembleDto: CreateEnsembleDto) {
     try {
       return this.ensembleService.createEnsemble(CreateEnsembleDto);
     } catch (error) {

@@ -54,7 +54,6 @@ describe('Ensemble Controller (e2e)', () => {
         22,
         'every two days',
         'Baroq',
-        'Cello musicians',
       );
 
       // Act
@@ -79,7 +78,6 @@ describe('Ensemble Controller (e2e)', () => {
         22,
         'every two days',
         'Baroq',
-        'Cello musicians',
       );
 
       // Act
@@ -102,7 +100,6 @@ describe('Ensemble Controller (e2e)', () => {
         22,
         'every two days',
         'Baroq',
-        'Cello musicians',
       );
 
       // Act

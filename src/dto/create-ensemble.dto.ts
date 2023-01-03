@@ -11,7 +11,6 @@ export class CreateEnsembleDto {
 
   address: string;
 
- @IsInt()
   activeMusicians: number;
 
   practiceFrequency: string;

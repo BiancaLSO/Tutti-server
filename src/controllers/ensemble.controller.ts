@@ -50,7 +50,7 @@ export class EnsembleController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-   createEnsembles(@Body() CreateEnsembleDto: CreateEnsembleDto) {
+   createEnsemble(@Body() CreateEnsembleDto: CreateEnsembleDto) {
     try {
     return this.ensembleService.createEnsemble(CreateEnsembleDto);
     } catch (error) {

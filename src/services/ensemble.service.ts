@@ -9,7 +9,8 @@ import { CreateEnsembleDto } from './../dto/create-ensemble.dto';
 export class EnsembleService {
   findOne: any;
   constructor(
-    @InjectModel(Ensemble.name)  public readonly ensembleModel: Model<EnsembleDocument>,
+    @InjectModel(Ensemble.name)
+    public readonly ensembleModel: Model<EnsembleDocument>,
   ) {}
 
   getAllEnsembles(): Promise<Ensemble[]> {
@@ -45,8 +46,7 @@ export class EnsembleService {
       .populate('address')
       .populate('activeMusicians')
       .populate('practiceFrequency')
-      .populate('genre')
-      .populate('lookUpInfo');
+      .populate('genre');
 
     if (!newEnsemble) {
       throw new NotFoundException();

@@ -63,37 +63,69 @@ describe('User Controller (e2e)', () => {
       expect(res.__v).toEqual(0);
     });
 
-    // it('should return an error for an empty username', async () => {
-    //   // Arrange
-    //   const ensemble1 = new CreateEnsembleDto(
-    //     'Addams Family Orchestra',
-    //     'This is a description',
-    //     'www.addams.org',
-    //     'New York',
-    //     22,
-    //     'every two days',
-    //     'Baroq',
-    //   );
-    //   const user1 = new CreateUserDto(
-    //     '',
-    //     'johndoe@gmail.com',
-    //     'password',
-    //     'John Doe',
-    //     12345678,
-    //     'Guitar',
-    //     'I am a professional guitar player',
-    //     [ensemble1],
-    //   );
+    it('should return an error for an empty username', async () => {
+      // Arrange
+      const ensemble1 = new CreateEnsembleDto(
+        'Addams Family Orchestra',
+        'This is a description',
+        'www.addams.org',
+        'New York',
+        22,
+        'every two days',
+        'Baroq',
+      );
+      const user1 = new CreateUserDto(
+        '',
+        'johndoe@gmail.com',
+        'password',
+        'John Doe',
+        12345678,
+        'Guitar',
+        'I am a professional guitar player',
+        [ensemble1],
+      );
 
-    //   // Act
-    //   const result = await request(app.getHttpServer())
-    //     .post('/users')
-    //     .send(user1)
-    //     .expect(400);
+      // Act
+      const result = await request(app.getHttpServer())
+        .post('/profile/signup')
+        .send(user1)
+        .expect(400);
 
-    //   // Assert
-    //   expect(result.body.message[0]).toEqual('username should not be empty');
-    // });
+      // Assert
+      expect(result.body.message[0]).toEqual('username should not be empty');
+    });
+
+    it('should return an error for an empty password', async () => {
+      // Arrange
+      const ensemble1 = new CreateEnsembleDto(
+        'Addams Family Orchestra',
+        'This is a description',
+        'www.addams.org',
+        'New York',
+        22,
+        'every two days',
+        'Baroq',
+      );
+      const user3 = new CreateUserDto(
+        'John',
+        'johndoe@gmail.com',
+        '',
+        'John Doe',
+        12345678,
+        'Guitar',
+        'I am a professional guitar player',
+        [ensemble1],
+      );
+
+      // Act
+      const result = await request(app.getHttpServer())
+        .post('/profile/signup')
+        .send(user3)
+        .expect(400);
+
+      // Assert
+      expect(result.body.message[0]).toEqual('password should not be empty');
+    });
 
     // it('should return an error for an empty email', async () => {
     //   // Arrange
@@ -119,44 +151,12 @@ describe('User Controller (e2e)', () => {
 
     //   // Act
     //   const result = await request(app.getHttpServer)
-    //     .post('/users')
+    //     .post('/profile/signup')
     //     .send(user2)
     //     .expect(400);
 
     //   // Assert
     //   expect(result.body.message[0]).toEqual('email should not be empty');
-    // });
-
-    // it('should return an error for an empty password', async () => {
-    //   // Arrange
-    //   const ensemble1 = new CreateEnsembleDto(
-    //     'Addams Family Orchestra',
-    //     'This is a description',
-    //     'www.addams.org',
-    //     'New York',
-    //     22,
-    //     'every two days',
-    //     'Baroq',
-    //   );
-    //   const user3 = new CreateUserDto(
-    //     'John',
-    //     'johndoe@gmail.com',
-    //     '',
-    //     'John Doe',
-    //     12345678,
-    //     'Guitar',
-    //     'I am a professional guitar player',
-    //     [ensemble1],
-    //   );
-
-    //   // Act
-    //   const result = await request(app.getHttpServer())
-    //     .post('/users')
-    //     .send(user3)
-    //     .expect(400);
-
-    //   // Assert
-    //   expect(result.body.message[0]).toEqual('password should not be empty');
     // });
   });
 

@@ -4,7 +4,6 @@ import * as request from 'supertest';
 import { EnsembleService } from './../src/services/ensemble.service';
 import { TestModule } from './../src/test.module';
 import { CreateEnsembleDto } from './../src/dto/create-ensemble.dto';
-import mongoose from 'mongoose';
 
 describe('Ensemble Controller (e2e)', () => {
   let app: INestApplication;

@@ -9,20 +9,15 @@ import { encodePassword } from '.././utils/bcrypt';
 
 @Injectable()
 export class UserService {
-  deleteAll(arg0: {}) {
-      throw new Error('Method not implemented.');
-  }
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async findAll(): Promise<User[]> {
     return this.userModel.find().populate('ensembles');
   }
 
-
   async findById(id: string): Promise<User> {
     return this.userModel.findOne({ _id: id }).exec();
   }
-
 
   async findByUsername(username: string): Promise<User> {
     return this.userModel.findOne({ username: username }).exec();
@@ -73,5 +68,9 @@ export class UserService {
     updateUser.ensembles = filteredEnsembles;
 
     return updateUser.save();
+  }
+
+  deleteAll(deleteCriteria: any) {
+    return this.userModel.deleteMany(deleteCriteria);
   }
 }

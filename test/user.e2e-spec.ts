@@ -5,6 +5,7 @@ import { UserService } from './../src/services/user.service';
 import { TestModule } from './../src/test.module';
 import { CreateUserDto } from './../src/dto/create-user.dto';
 import mongoose from 'mongoose';
+import { CreateEnsembleDto } from './../src/dto/create-ensemble.dto';
 
 describe('User Controller (e2e)', () => {
   let app: INestApplication;
@@ -31,11 +32,26 @@ describe('User Controller (e2e)', () => {
   describe('POST User Controller', () => {
     it('should create a new valid user', async () => {
       // Arrange
+      const ensemble1 = new CreateEnsembleDto (
+        'Addams Family Orchestra',
+        'This is a description',
+        'www.addams.org',
+        'New York',
+        22,
+        'every two days',
+        'Baroq',
+        'Cello musicians'
+      )
       const user = new CreateUserDto(
-        'Jane',
-        'Doe',
-        'jane.doe@example.com',
-        'password123',
+        'John',
+        'johndoe@gmail.com',
+        'password',
+        'John Doe',
+        12345678,
+        'Guitar',
+        'I am a professional guitar player',
+        [ensemble1]
+        
       );
 
       // Act
@@ -50,60 +66,99 @@ describe('User Controller (e2e)', () => {
       expect(res.__v).toEqual(0);
     });
 
-    it('should return an error if the email is already taken', async () => {
+    it('should return an error for an empty username', async () => {
       // Arrange
       const user1 = new CreateUserDto(
-        'Jane',
-        'Doe',
-        'jane.doe@example.com',
-        'password123',
-      );
-      const user2 = new CreateUserDto(
-        'John',
-        'Doe',
-        'jane.doe@example.com',
-        'password456',
+        '',
+        'johndoe@gmail.com',
+        'password',
+        'John Doe',
+        12345678,
+        'Guitar',
+        'I am a professional guitar player',
+        ['Addams Family Orchestra',
+        'This is a description',
+        'www.addams.org',
+        'New York',
+        22,
+        'every two days',
+        'Baroq',
+        'Cello musicians'],
       );
 
       // Act
-      await request(app.getHttpServer())
-        .post('/users')
-        .send(user1)
-        .expect(201);
       const result = await request(app.getHttpServer())
         .post('/users')
-        .send(user2)
+        .send(user1)
         .expect(400);
 
       // Assert
-      expect(result.body.message).toEqual('Email already taken');
+      expect(result.body.message[0]).toEqual('username should not be empty');
     });
 
-    it('should return an error if the password is too short', async () => {
+    it('should return an error for an empty email', async () => {
       // Arrange
-      const user = new CreateUserDto(
-        'Jane',
-        'Doe',
-        'jane.doe@example.com',
-        'pass',
-        );
+      const user2 = new CreateUserDto(
+        'John',
+        '',
+        'password',
+        'John Doe',
+        12345678,
+        'Guitar',
+        'I am a professional guitar player',
+        ['Addams Family Orchestra',
+        'This is a description',
+        'www.addams.org',
+        'New York',
+        22,
+        'every two days',
+        'Baroq',
+        'Cello musicians'],
+      );
 
-        // Act
-        const result = await request(app.getHttpServer())
-          .post('/users')
-          .send(user)
-          .expect(400);
-  
-        // Assert
-        expect(result.body.message).toEqual('Password must be at least 5 characters long with at least one number');
-      });
-    });
-  
-    // Closing the app after all tests, which results in not hanging.
-    afterAll(() => {
-      app.close();
-    });
+      // Act
+      const result = await request(app.getHttpServer)
+      .post('/users')
+      .send(user2)
+      .expect(400);
+
+    // Assert
+    expect(result.body.message[0]).toEqual('email should not be empty');
   });
 
-  
-  
+  it('should return an error for an empty password', async () => {
+    // Arrange
+    const user3 = new CreateUserDto(
+        'John',
+        'johndoe@gmail.com',
+        '',
+        'John Doe',
+        '12345678',
+        'Guitar',
+        'I am a professional guitar player',
+        ['Addams Family Orchestra',
+        'This is a description',
+        'www.addams.org',
+        'New York',
+        22,
+        'every two days',
+        'Baroq',
+        'Cello musicians'],
+    );
+
+    // Act
+    const result = await request(app.getHttpServer())
+      .post('/users')
+      .send(user3)
+      .expect(400);
+
+    // Assert
+    expect(result.body.message[0]).toEqual('password should not be empty');
+  });
+});
+
+// Closing the app after all tests, which results in not hanging.
+afterAll(() => {
+  app.close();
+});
+});

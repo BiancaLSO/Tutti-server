@@ -15,7 +15,7 @@ import { Ensemble } from './../schemas/ensemble.schema';
 import { EnsembleService } from './../services/ensemble.service';
 import { CreateEnsembleDto } from './../dto/create-ensemble.dto';
 import { UpdateEnsembleDto } from './../dto/update-ensemble.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from './../auth/jwt-auth.guard';
 
 @Controller('ensembles')
 export class EnsembleController {

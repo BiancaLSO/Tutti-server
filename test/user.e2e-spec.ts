@@ -39,7 +39,6 @@ describe('User Controller (e2e)', () => {
         22,
         'every two days',
         'Baroq',
-        'Cello musicians',
       );
       const user = new CreateUserDto(
         'John',
@@ -74,7 +73,6 @@ describe('User Controller (e2e)', () => {
     //     22,
     //     'every two days',
     //     'Baroq',
-    //     'Cello musicians',
     //   );
     //   const user1 = new CreateUserDto(
     //     '',
@@ -107,7 +105,6 @@ describe('User Controller (e2e)', () => {
     //     22,
     //     'every two days',
     //     'Baroq',
-    //     'Cello musicians',
     //   );
     //   const user2 = new CreateUserDto(
     //     'John',
@@ -140,7 +137,6 @@ describe('User Controller (e2e)', () => {
     //     22,
     //     'every two days',
     //     'Baroq',
-    //     'Cello musicians',
     //   );
     //   const user3 = new CreateUserDto(
     //     'John',

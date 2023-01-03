@@ -9,7 +9,7 @@ import { CreateEnsembleDto } from './../dto/create-ensemble.dto';
 export class EnsembleService {
   findOne: any;
   constructor(
-    @InjectModel(Ensemble.name) private ensembleModel: Model<EnsembleDocument>,
+    @InjectModel(Ensemble.name)  public readonly ensembleModel: Model<EnsembleDocument>,
   ) {}
 
   getAllEnsembles(): Promise<Ensemble[]> {

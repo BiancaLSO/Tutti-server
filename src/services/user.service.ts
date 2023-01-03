@@ -10,6 +10,7 @@ import { encodePassword } from '.././utils/bcrypt';
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  
 
   async findAll(): Promise<User[]> {
     return this.userModel.find().populate('ensembles');
@@ -56,10 +57,14 @@ export class UserService {
 
   async addEnsemble(id: string, en: CreateEnsembleDto) {
     const updateUser = await this.userModel.findById(id);
-    updateUser.ensembles.push(en);
-
-    return updateUser.save();
+    if (!updateUser.ensembles.find(elem => elem === en)) {
+      updateUser.ensembles.push(en);
+      return updateUser.save();
+    } else {
+      alert('Ensemble already exists');
+    }
   }
+  
 
   async deleteEnsemble(id: string, enId: string) {
     const updateUser = await this.userModel.findById(id);

@@ -17,8 +17,6 @@ export class CreateEnsembleDto {
 
   genre: string;
 
-  lookUpInfo: string;
-
   constructor(
     name: string,
     description: string,
@@ -27,7 +25,6 @@ export class CreateEnsembleDto {
     activeMusicians: number,
     practiceFrequency: string,
     genre: string,
-    lookUpInfo: string,
   ) {
     this.name = name;
     this.description = description;
@@ -36,6 +33,6 @@ export class CreateEnsembleDto {
     this.activeMusicians = activeMusicians;
     this.practiceFrequency = practiceFrequency;
     this.genre = genre;
-    this.lookUpInfo = lookUpInfo;
+
   }
 }

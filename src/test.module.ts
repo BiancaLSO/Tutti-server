@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
+import { JwtStrategy } from './auth/jwt.strategy';
 import { EnsembleModule } from './modules/ensemble.module';
 import { UserModule } from './modules/user.module';
 
@@ -16,6 +17,6 @@ import { UserModule } from './modules/user.module';
     UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService, JwtService],
+  providers: [AppService, AuthService, JwtService, JwtStrategy],
 })
 export class TestModule {}

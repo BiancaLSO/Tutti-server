@@ -14,7 +14,7 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   fullName: string;
-  
+
   phoneNo: number;
 
   instrument: string;
@@ -22,4 +22,24 @@ export class CreateUserDto {
   description: string;
 
   ensembles: Ensemble[];
+
+  constructor(
+    username: string,
+    email: string,
+    password: string,
+    fullName: string,
+    phoneNo: number,
+    instrument: string,
+    description: string,
+    ensembles: Ensemble[],
+  ) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+    this.fullName = fullName;
+    this.phoneNo = phoneNo;
+    this.instrument = instrument;
+    this.description = description;
+    this.ensembles = ensembles;
+  }
 }
